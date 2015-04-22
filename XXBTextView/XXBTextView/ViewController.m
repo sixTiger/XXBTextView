@@ -7,21 +7,21 @@
 //
 
 #import "ViewController.h"
+#import "XXBTextView.h"
 
 @interface ViewController ()
+@property (strong, nonatomic) XXBTextView *textView;
 
 @end
 
 @implementation ViewController
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.textView = [[XXBTextView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    [self.view addSubview:self.textView];
+    self.textView.text = @"a";
+    
+    self.textView.placeHoder = @"请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入";
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end
