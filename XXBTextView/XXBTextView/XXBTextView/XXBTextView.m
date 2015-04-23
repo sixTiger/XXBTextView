@@ -37,6 +37,10 @@
 {
     [super setFont:font];
     self.placeHoderLable.font = font;
+    if (self.placeHoder)
+    {
+        [self adjustPlacehoderFrame];
+    }
 }
 - (void)setPlaceHoderColor:(UIColor *)placeHoderColor
 {
@@ -47,11 +51,17 @@
 {
     _placeHoder = [placeHoder copy];
     self.placeHoderLable.text = _placeHoder;
+    if(self.font)
+    {
+        [self adjustPlacehoderFrame];
+    }
+}
+- (void)adjustPlacehoderFrame
+{
     UIEdgeInsets edgeInset = self.textContainerInset;
     CGRect rect = self.bounds;
     CGSize placehoderSize = [self sizeWithSting:_placeHoder Fount:self.font withMaxSize:CGSizeMake(rect.size.width - edgeInset.right - edgeInset.left - 5, MAXFLOAT)];
     self.placeHoderLable.frame = CGRectMake(edgeInset.left + 5, edgeInset.top, placehoderSize.width, placehoderSize.height);
-    
 }
 #pragma mark - 代理处理
 - (void)setDelegate:(id<UITextViewDelegate>)delegate
@@ -139,8 +149,23 @@
     {
         self.placeHoderLable.hidden = YES;
     }
+    else
+    {
+        self.placeHoderLable.hidden = NO;
+    }
 }
-
+- (void)setText:(NSString *)text
+{
+    [super setText:text];
+    if (text.length > 0)
+    {
+        self.placeHoderLable.hidden = YES;
+    }
+    else
+    {
+        self.placeHoderLable.hidden = NO;
+    }
+}
 
 - (UILabel *)placeHoderLable
 {
