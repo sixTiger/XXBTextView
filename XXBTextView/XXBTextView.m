@@ -40,7 +40,7 @@
     self.placeHoderLable.font = font;
     if (self.placeHoder)
     {
-        [self adjustPlacehoderFrame];
+        [self p_updateLayout];
     }
 }
 - (void)setPlaceHoderColor:(UIColor *)placeHoderColor
@@ -54,15 +54,16 @@
     self.placeHoderLable.text = _placeHoder;
     if(self.font)
     {
-        [self adjustPlacehoderFrame];
+        [self p_updateLayout];
     }
 }
-- (void)adjustPlacehoderFrame
+- (void)p_updateLayout
 {
+    CGFloat pading = 5;
     UIEdgeInsets edgeInset = self.textContainerInset;
     CGRect rect = self.bounds;
-    CGSize placehoderSize = [self sizeWithSting:_placeHoder Fount:self.font withMaxSize:CGSizeMake(rect.size.width - edgeInset.right - edgeInset.left - 5, MAXFLOAT)];
-    self.placeHoderLable.frame = CGRectMake(edgeInset.left + 5, edgeInset.top, placehoderSize.width, placehoderSize.height);
+    CGSize placehoderSize = [self sizeWithSting:_placeHoder Fount:self.font withMaxSize:CGSizeMake(rect.size.width - edgeInset.right - edgeInset.left - pading * 2, MAXFLOAT)];
+    self.placeHoderLable.frame = CGRectMake(edgeInset.left + pading, edgeInset.top, placehoderSize.width, placehoderSize.height);
 }
 #pragma mark - 代理处理
 - (void)setDelegate:(id<UITextViewDelegate>)delegate
@@ -186,6 +187,15 @@
     }
     return _placeHoderLable;
 }
+/**
+ *  计算字符串所占的位置的大小
+ *
+ *  @param string  要计算大小的字符串
+ *  @param fount   文字的
+ *  @param maxSize 预设的最大的大小
+ *
+ *  @return 计算好的大小
+ */
 - (CGSize)sizeWithSting:(NSString *)string Fount:(UIFont *)fount withMaxSize:(CGSize)maxSize;
 {
     NSDictionary *attrs = @{NSFontAttributeName : fount};

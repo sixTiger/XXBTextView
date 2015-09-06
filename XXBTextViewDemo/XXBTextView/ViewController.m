@@ -22,7 +22,7 @@
     [self.view addSubview:self.textView];
     self.textView.font = [UIFont systemFontOfSize:20];
     self.textView.text = @"a";
-    self.textView.placeHoder = @"请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入请输入";
+    self.textView.placeHoder = @"placeHoder-->placeHoder-->placeHoder-->placeHoder-->placeHoder-->placeHoder";
     self.textView.placeHoderColor = [UIColor grayColor];
 }
 @end
