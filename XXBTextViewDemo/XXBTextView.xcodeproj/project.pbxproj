@@ -14,7 +14,7 @@
 		099F50A31AE74D700038CF7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 099F50A21AE74D700038CF7C /* Images.xcassets */; };
 		099F50A61AE74D700038CF7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099F50A41AE74D700038CF7C /* LaunchScreen.xib */; };
 		099F50B21AE74D700038CF7C /* XXBTextViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 099F50B11AE74D700038CF7C /* XXBTextViewTests.m */; };
-		099F50BE1AE74DF70038CF7C /* XXBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 099F50BD1AE74DF70038CF7C /* XXBTextView.m */; };
+		6251C9081B9C15F0004758FA /* XXBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6251C9071B9C15F0004758FA /* XXBTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +41,8 @@
 		099F50AB1AE74D700038CF7C /* XXBTextViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XXBTextViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		099F50B01AE74D700038CF7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		099F50B11AE74D700038CF7C /* XXBTextViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXBTextViewTests.m; sourceTree = "<group>"; };
-		099F50BC1AE74DF70038CF7C /* XXBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBTextView.h; sourceTree = "<group>"; };
-		099F50BD1AE74DF70038CF7C /* XXBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBTextView.m; sourceTree = "<group>"; };
+		6251C9061B9C15F0004758FA /* XXBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBTextView.h; sourceTree = "<group>"; };
+		6251C9071B9C15F0004758FA /* XXBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 		099F50941AE74D700038CF7C /* XXBTextView */ = {
 			isa = PBXGroup;
 			children = (
-				099F50BB1AE74DCA0038CF7C /* XXBTextView */,
+				6251C9051B9C15F0004758FA /* XXBTextView */,
 				099F50991AE74D700038CF7C /* AppDelegate.h */,
 				099F509A1AE74D700038CF7C /* AppDelegate.m */,
 				099F509C1AE74D700038CF7C /* ViewController.h */,
@@ -123,13 +123,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		099F50BB1AE74DCA0038CF7C /* XXBTextView */ = {
+		6251C9051B9C15F0004758FA /* XXBTextView */ = {
 			isa = PBXGroup;
 			children = (
-				099F50BC1AE74DF70038CF7C /* XXBTextView.h */,
-				099F50BD1AE74DF70038CF7C /* XXBTextView.m */,
+				6251C9061B9C15F0004758FA /* XXBTextView.h */,
+				6251C9071B9C15F0004758FA /* XXBTextView.m */,
 			);
-			path = XXBTextView;
+			name = XXBTextView;
+			path = ../../XXBTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +235,7 @@
 			files = (
 				099F509E1AE74D700038CF7C /* ViewController.m in Sources */,
 				099F509B1AE74D700038CF7C /* AppDelegate.m in Sources */,
-				099F50BE1AE74DF70038CF7C /* XXBTextView.m in Sources */,
+				6251C9081B9C15F0004758FA /* XXBTextView.m in Sources */,
 				099F50981AE74D700038CF7C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

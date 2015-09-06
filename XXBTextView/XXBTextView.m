@@ -32,6 +32,7 @@
 - (void)setupXXBTextView
 {
     [self setDelegate:self];
+    self.textLengthLimit = NSIntegerMax;
 }
 - (void)setFont:(UIFont *)font
 {
@@ -107,6 +108,9 @@
     if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
         return [self.XXBTextViewdelegate textView:self shouldChangeTextInRange:range replacementText:text];
     }
+    if (textView.text.length >= self.textLengthLimit && text.length > range.length) {
+        return NO;
+    }
     return YES;
 }
 - (void)textViewDidChange:(UITextView *)textView
@@ -118,6 +122,10 @@
     else
     {
         self.placeHoderLable.hidden = NO;
+    }
+    if (textView.markedTextRange == nil && self.textLengthLimit > 0 && self.text.length > self.textLengthLimit)
+    {
+        textView.text = [textView.text substringToIndex:self.textLengthLimit];
     }
     if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewDidChange:)])
     {
@@ -166,12 +174,11 @@
         self.placeHoderLable.hidden = NO;
     }
 }
-
 - (UILabel *)placeHoderLable
 {
     if(_placeHoderLable == nil)
     {
-        UILabel *placeHoderLable = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 100, 100)];
+        UILabel *placeHoderLable = [[UILabel alloc] initWithFrame:self.bounds];
         placeHoderLable.numberOfLines = 0;
         placeHoderLable.font = self.font;
         [self addSubview:placeHoderLable];

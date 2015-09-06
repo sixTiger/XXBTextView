@@ -14,7 +14,7 @@
 		<string>https://github.com/sixTiger/XXBTextView.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>XXBTextView/XXBTextView.xcodeproj</string>
+	<string>XXBTextViewDemo/XXBTextView.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>BF40E619898216304C4F7F8A953A4BC97BE49DE9</key>
