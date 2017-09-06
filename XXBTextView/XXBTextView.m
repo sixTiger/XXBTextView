@@ -8,8 +8,8 @@
 
 #import "XXBTextView.h"
 
-@interface XXBTextView()<UITextViewDelegate>
-@property(nonatomic , weak)id<UITextViewDelegate> XXBTextViewDelegate;
+@interface XXBTextView()<XXBTextViewDelegate>
+@property(nonatomic , weak)id<XXBTextViewDelegate> XXBTextViewdelegate;
 @property(nonatomic , weak)UILabel *placeHoderLable;
 @end
 
@@ -17,19 +17,25 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setupMTTextView];
+        [self setupXXBTextView];
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        [self setupMTTextView];
+        [self setupXXBTextView];
     }
     return self;
 }
 
-- (void)setupMTTextView {
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.placeHoder) {
+        [self p_updateLayout];
+    }
+}
+- (void)setupXXBTextView {
     [self setDelegate:self];
     self.textLengthLimit = NSIntegerMax;
 }
@@ -63,44 +69,44 @@
     self.placeHoderLable.frame = CGRectMake(edgeInset.left + pading, edgeInset.top, placehoderSize.width, placehoderSize.height);
 }
 #pragma mark - 代理处理
-- (void)setDelegate:(id<UITextViewDelegate>)delegate {
+- (void)setDelegate:(id<XXBTextViewDelegate>)delegate {
     if (delegate != nil) {
         [super setDelegate:self];
     }
     if(delegate != self) {
-        _XXBTextViewDelegate = delegate;
+        _XXBTextViewdelegate = delegate;
     }
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewShouldBeginEditing:)]) {
-        return [self.XXBTextViewDelegate textViewShouldBeginEditing:self];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewShouldBeginEditing:)]) {
+        return [self.XXBTextViewdelegate textViewShouldBeginEditing:self];
     }
     return YES;
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
-        return [self.XXBTextViewDelegate textViewShouldEndEditing:self];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
+        return [self.XXBTextViewdelegate textViewShouldEndEditing:self];
     }
     return YES;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
-        [self.XXBTextViewDelegate textViewDidBeginEditing:self];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
+        [self.XXBTextViewdelegate textViewDidBeginEditing:self];
     }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
-        [self.XXBTextViewDelegate textViewDidEndEditing:self];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
+        [self.XXBTextViewdelegate textViewDidEndEditing:self];
     }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
-        return [self.XXBTextViewDelegate textView:self shouldChangeTextInRange:range replacementText:text];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
+        return [self.XXBTextViewdelegate textView:self shouldChangeTextInRange:range replacementText:text];
     }
     NSString *sumLengthString = textView.text;
     UITextRange *selectRange = [textView markedTextRange];
@@ -108,6 +114,9 @@
     if (position) {
     } else {
         if (sumLengthString.length >= self.textLengthLimit && text.length > range.length) {
+            if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewTextBeyondLengthLimit:)]) {
+                [self.XXBTextViewdelegate textViewTextBeyondLengthLimit:self];
+            }
             return NO;
         }
     }
@@ -121,19 +130,22 @@
     }
     
     if (textView.markedTextRange == nil && self.textLengthLimit > 0 && self.text.length > self.textLengthLimit) {
+        if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewTextBeyondLengthLimit:)]) {
+            [self.XXBTextViewdelegate textViewTextBeyondLengthLimit:self];
+        }
         NSString *tostring = textView.text;
         NSRange rangeRange = [tostring rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, self.textLengthLimit)];
         textView.text = [tostring substringWithRange:rangeRange];
     }
     
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewDidChange:)]) {
-        [self.XXBTextViewDelegate textViewDidChange:self];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewDidChange:)]) {
+        [self.XXBTextViewdelegate textViewDidChange:self];
     }
 }
 
 - (void)textViewDidChangeSelection:(UITextView *)textView {
-    if ([self.XXBTextViewDelegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
-        [self.XXBTextViewDelegate textViewDidChangeSelection:self];
+    if ([self.XXBTextViewdelegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
+        [self.XXBTextViewdelegate textViewDidChangeSelection:self];
     }
 }
 

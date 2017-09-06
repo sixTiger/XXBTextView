@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XXBTextView;
+
+@protocol XXBTextViewDelegate <UITextViewDelegate>
+@optional
+
+- (void)textViewTextBeyondLengthLimit:(UITextView *)textView;
+@end
 
 @interface XXBTextView : UITextView
 /**
